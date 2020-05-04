@@ -1,12 +1,11 @@
 import { connect } from 'react-redux'
-import  TableFull  from '../components/TableFull'
+import IntegratedTable from '../components/IntegratedTable'
+import fetchTriggers, {runTriggers} from '../store/fetchTriggers'
 
-export const trigger_columns = ["parent", "name", "status", "condition", "time_condition"
-        //, "arguments", "target_job", "timezone", "description"
-        ];
+export const trigger_columns = ["parent", "name", "status", "condition", "time_condition" ];
 export const getRowClass = (trigger, col) => {
     let rclass = ""
-    if ("status" === col ) {//|| "name" === col
+    if ("status" === col ) {
         let jstatus = trigger.status
         switch (jstatus) {
             case "FAILURE":
@@ -25,16 +24,22 @@ export const getRowClass = (trigger, col) => {
 const mapStateToProps = state => {
     return {
         columns: trigger_columns,
-        dataTable: state.jobTriggers
+        data: state.jobTriggers.triggers,
+        pending: state.jobTriggers.pending,
+        error: state.jobTriggers.error,
+        colorButton: 'primary'
     }
 }
 
-const mapDispatchToProps = state => {
+export const mapDispatchToProps = (dispatch, ownProps) => {
     return {
-        determineRowClass: getRowClass
+        getRowClass: getRowClass,
+        determineRowClass: getRowClass,
+        actionButton: () => {dispatch(fetchTriggers('http://localhost:8080/trigger/list'))},
+        runButton: (name) => {dispatch(runTriggers('http://localhost:8080/trigger/run?triggerName=' + name ))}
     }
 }
 
-const TriggerListContainer = connect(mapStateToProps, mapDispatchToProps)(TableFull)
+const TriggerListContainer = connect(mapStateToProps, mapDispatchToProps)(IntegratedTable)
 
 export default TriggerListContainer

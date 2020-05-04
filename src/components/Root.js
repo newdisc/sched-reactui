@@ -1,16 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Provider } from 'react-redux'
-import { BrowserRouter as Router, useParams, Redirect, Switch, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Redirect, Switch, Route } from 'react-router-dom'
 import TriggerListContainer from '../containers/TriggerListContainer'
 import JobListContainer from '../containers/JobListContainer'
 import TriggerDetailsContainer from '../containers/TriggerDetailsContainer'
 import JobDetailsContainer from '../containers/JobDetailsContainer'
-import WrapperMain from '../components/WrapperMain'
-import RunButton from '../components/RunButtons'
 
 
-const Root = ({ store }) => (
+const Root = ({ store, props }) => (
   <Provider store={store}>
     <Router>
       <Switch>
@@ -18,51 +16,55 @@ const Root = ({ store }) => (
           <Redirect to="/triggers"/>
         </Route>
         <Route exact path="/triggers" >
-          <WrapperMain>
-            <TriggerListContainer/>
-          </WrapperMain>
+          <TriggerListContainer />
         </Route>
         <Route path="/triggers/:id" >
-          <WrapperMain>
-            <RunButton>
-              <TDC/>
-            </RunButton>
-          </WrapperMain>
+          <TriggerDetailsContainer />
         </Route>
         <Route exact path="/jobs">
-          <WrapperMain>
             <JobListContainer/>
-          </WrapperMain>
         </Route>
         <Route path="/jobs/:id">
-          <WrapperMain>
-            <JDC/>
-          </WrapperMain>
+          <JobDetailsContainer />
         </Route>
       </Switch>
     </Router>
   </Provider>
 )
-
-function TDC() {
-  let { id } = useParams();
-  return (
-    <TriggerDetailsContainer triggerName={id}/>
-  );
-}
-
-function JDC() {
-  let { id } = useParams();
-  return (
-    <JobDetailsContainer jobName={id}/>
-  );
-}
-
 Root.propTypes = {
   store: PropTypes.object.isRequired
 }
 
 export default Root
 /* 
+
+function TDC() {
+  let { id } = useParams();
+  return (
+    <TriggerDetailsContainer triggerName={id} name={id}/>
+  );
+}
+
+function JDC() {
+  let { id } = useParams();
+  return (
+    <JobDetailsContainer jobName={id} name={id}/>
+  );
+}
+
+import WrapperMain from '../components/WrapperMain'
+import RunButton from '../components/RunButtons'
+          <WrapperMain>
+            <RunButton>
+            <JDC/>
+            </RunButton>
+          </WrapperMain>
  <TriggerDetailsContainer triggerName={id}/>
+          <WrapperMain>
+            <TriggerListContainer/>
+          </WrapperMain>
+          <WrapperMain>
+          </WrapperMain>
 */
+//import IntegratedWrapContainer from '../containers/IntegratedWrapContainer'
+//import IntegratedTable from './IntegratedTable'

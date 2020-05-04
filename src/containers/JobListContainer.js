@@ -1,22 +1,30 @@
 import { connect } from 'react-redux'
-import  TableFull  from '../components/TableFull'
+import IntegratedTable from '../components/IntegratedTable'
+//import  TableFull  from '../components/TableFull'
+import fetchCommands from '../store/fetchCommands'
 
 export const job_columns = ["name", "fullCommand"];
+
 
 const mapStateToProps = state => {
     return {
         columns: job_columns,
-        dataTable: state.jobCommands
+        data: state.jobCommands.commands,
+        pending: state.jobCommands.pending,
+        error: state.jobCommands.error,
+        colorButton: 'primary'
     }
 }
 
-export const mapDispatchToProps = state => {
+export const mapDispatchToProps = (dispatch) => {
     return {
-        determineRowClass: () => {return "";}
+        getRowClass: () => {return ""},
+        actionButton: () => {dispatch(fetchCommands('http://localhost:8080/job/list'))},
+        determineRowClass: () => {return ""}
     }
 }
 
 
-const JobListContainer = connect(mapStateToProps, mapDispatchToProps)(TableFull)
+const JobListContainer = connect(mapStateToProps, mapDispatchToProps)(IntegratedTable)
 
 export default JobListContainer
