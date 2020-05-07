@@ -7,10 +7,37 @@ import JobListContainer from '../containers/JobListContainer'
 import TriggerDetailsContainer from '../containers/TriggerDetailsContainer'
 import JobDetailsContainer from '../containers/JobDetailsContainer'
 
-
 const Root = ({ store, props }) => (
   <Provider store={store}>
-    <Router>
+    <Router > 
+      <Switch>
+        <Route exact path="/"> 
+          <Redirect to="/ui/triggers"/>
+        </Route>
+        <Route exact path="/ui/triggers" >
+          <TriggerListContainer />
+        </Route>
+        <Route path="/ui/triggers/:id" >
+          <TriggerDetailsContainer />
+        </Route>
+        <Route exact path="/ui/jobs">
+            <JobListContainer/>
+        </Route>
+        <Route path="/ui/jobs/:id">
+          <JobDetailsContainer />
+        </Route>
+      </Switch>
+    </Router > 
+  </Provider>
+)
+Root.propTypes = {
+  store: PropTypes.object.isRequired
+}
+
+export default Root
+/* 
+//basename={'ui'}
+    <Router > 
       <Switch>
         <Route exact path="/"> 
           <Redirect to="/triggers"/>
@@ -29,14 +56,6 @@ const Root = ({ store, props }) => (
         </Route>
       </Switch>
     </Router>
-  </Provider>
-)
-Root.propTypes = {
-  store: PropTypes.object.isRequired
-}
-
-export default Root
-/* 
 
 function TDC() {
   let { id } = useParams();

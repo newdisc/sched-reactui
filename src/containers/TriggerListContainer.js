@@ -35,8 +35,8 @@ export const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         getRowClass: getRowClass,
         determineRowClass: getRowClass,
-        actionButton: () => {dispatch(fetchTriggers('http://localhost:8080/trigger/list'))},
-        runButton: (name) => {dispatch(runTriggers('http://localhost:8080/trigger/run?triggerName=' + name ))}
+        actionButton: () => {dispatch(fetchTriggers('/api/trigger/list'))},
+        runButton: (name) => {dispatch(runTriggers('/api/trigger/run?triggerName=' + name ))}
     }
 }
 

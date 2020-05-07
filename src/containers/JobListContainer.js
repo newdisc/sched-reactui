@@ -19,7 +19,7 @@ const mapStateToProps = state => {
 export const mapDispatchToProps = (dispatch) => {
     return {
         getRowClass: () => {return ""},
-        actionButton: () => {dispatch(fetchCommands('http://localhost:8080/job/list'))},
+        actionButton: () => {dispatch(fetchCommands('/api/job/list'))},
         determineRowClass: () => {return ""}
     }
 }

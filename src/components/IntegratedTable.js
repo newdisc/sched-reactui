@@ -17,6 +17,8 @@ export const getColData = (dataRow, col) => {
     return val
   }
 }
+//
+//      <Link to={location => `${location.pathname}/${val}`}>{val}</Link>
 
 export const getButtonIcon = (isPending) => {
     if (isPending) {
