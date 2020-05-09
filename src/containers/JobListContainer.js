@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import IntegratedTable from '../components/IntegratedTable'
-//import  TableFull  from '../components/TableFull'
 import fetchCommands from '../store/fetchCommands'
+import fetchLogs from '../store/fetchLogs'
 
 export const job_columns = ["name", "fullCommand"];
 
@@ -20,6 +20,7 @@ export const mapDispatchToProps = (dispatch) => {
     return {
         getRowClass: () => {return ""},
         actionButton: () => {dispatch(fetchCommands('/api/job/list'))},
+        retrieveLogs: (name) => {dispatch(fetchLogs('/api/job/logs/' + name ))},
         determineRowClass: () => {return ""}
     }
 }

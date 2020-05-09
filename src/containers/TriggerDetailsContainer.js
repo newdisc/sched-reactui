@@ -12,6 +12,7 @@ const mapStateToProps = (state, ownProps) => {
         data: state.jobTriggers.triggers,
         pending: state.jobTriggers.pending,
         error: state.jobTriggers.error,
+        logs: state.jobLogs.logs
     }
 }
 

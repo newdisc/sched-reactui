@@ -1,7 +1,4 @@
 
-export const ADD_TRIGGERS = 'ADD_TRIGGERS'
-export const ADD_COMMANDS = 'ADD_COMMANDS'
-export const RUN_TRIGGER = 'RUN_TRIGGER'
 export const SUCCESS = 'SUCCESS'
 export const FAILURE = 'FAILURE'
 
@@ -80,14 +77,27 @@ export function runTriggersFailure(error) {
     }
 }
 
-export function addTriggers(triggers){
-    return {type: ADD_TRIGGERS, triggers}
+export const FETCH_LOGS_PENDING = 'FETCH_LOGS_PENDING'
+export function fetchLogsPending(){
+    return {
+        type: FETCH_LOGS_PENDING
+    }
 }
 
-export function addJobs(jobs){
-    return {type: ADD_COMMANDS, jobs}
+export const FETCH_LOGS_SUCCESS = 'FETCH_LOGS_SUCCESS'
+export function fetchLogsSuccess(logs) {
+    return {
+        type: FETCH_LOGS_SUCCESS,
+        status: SUCCESS,
+        logs: logs
+    }
 }
 
-export function runTrigger(trigger) {
-    return {type: RUN_TRIGGER, trigger}
+export const FETCH_LOGS_ERROR = 'FETCH_LOGS_ERROR'
+export function fetchLogsFailure(error) {
+    return {
+        type: FETCH_LOGS_ERROR,
+        status: FAILURE,
+        error: error
+    }
 }

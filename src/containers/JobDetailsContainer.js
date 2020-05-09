@@ -12,6 +12,7 @@ const mapStateToProps = (state, ownProps) => {
     return {
         columns: job_columns,
         data: state.jobCommands.commands,
+        logs: state.jobLogs.logs,
         dataRow: dr
     }
 }
@@ -20,16 +21,3 @@ const mapStateToProps = (state, ownProps) => {
 const JobDetailsContainer = connect(mapStateToProps, mapDispatchToProps)(RowDetails)
 
 export default JobDetailsContainer
-
-/*
-const mapDispatchToProps = (dispatch, ownProps) => {
-    return {
-        determineRowClass: () => {return ""}
-    }
-}
-*/
-    //console.log("Searching map for: " + ownProps.jobName + ownProps.name)
-    //console.log("Columns ")
-    //console.log(job_columns)
-    //console.log(state.jobCommands)
-    //console.log(dr)
