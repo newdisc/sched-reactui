@@ -66,8 +66,8 @@ const IntegratedTable = ({columns, data, colorButton, pending, error, getRowClas
                 <tbody>
                 {data.map((dataRow,idx) => (
                     <tr key={idx}>
-                    {columns.map( (col, idx) => (
-                        <td key={idx} className={getRowClass(dataRow, col)}>
+                    {columns.map( (col, idxi) => (
+                        <td key={idxi} className={getRowClass(dataRow, col)}>
                         {getColData(dataRow, col)}
                         </td>
                     ))}
