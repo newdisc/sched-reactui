@@ -35,7 +35,10 @@
                         </goals>
                         <configuration>
                             <nodeVersion>v12.16.3</nodeVersion>
+                            <!-- 
                             <npmVersion>6.13.4</npmVersion>
+                            <downloadRoot></downloadRoot>
+                             -->
                         </configuration>
                     </execution>
                     <execution>
