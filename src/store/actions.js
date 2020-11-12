@@ -101,3 +101,29 @@ export function fetchLogsFailure(error) {
         error: error
     }
 }
+
+
+export const RUN_COMMAND_PENDING = 'RUN_COMMAND_PENDING'
+export function runCommandsPending(){
+    return {
+        type: RUN_COMMAND_PENDING
+    }
+}
+
+export const RUN_COMMAND_SUCCESS = 'RUN_COMMAND_SUCCESS'
+export function runCommandsSuccess(commands) {
+    return {
+        type: RUN_COMMAND_SUCCESS,
+        status: SUCCESS,
+        commands: commands
+    }
+}
+
+export const RUN_COMMAND_ERROR = 'RUN_COMMAND_ERROR'
+export function runCommandsFailure(error) {
+    return {
+        type: RUN_COMMAND_ERROR,
+        status: FAILURE,
+        error: error
+    }
+}
