@@ -2,8 +2,7 @@ import { connect } from 'react-redux'
 import  RowDetails  from '../components/RowDetails'
 import { mapDispatchToProps} from './TriggerListContainer'
 
-export const trigger_columns = ["parent", "name", "status", "condition", "time_condition"
-        , "arguments", "target_job", "timezone", "description"
+export const trigger_columns = ["name", "parent", "status", "job", "dependencies", "arguments", "qualifier"
         ];
         
 const mapStateToProps = (state, ownProps) => {

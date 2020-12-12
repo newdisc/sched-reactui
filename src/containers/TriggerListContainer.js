@@ -3,7 +3,7 @@ import IntegratedTable from '../components/IntegratedTable'
 import fetchTriggers, {runTriggers} from '../store/fetchTriggers'
 import fetchLogs from '../store/fetchLogs'
 
-export const trigger_columns = ["parent", "name", "status", "condition", "time_condition" ];
+export const trigger_columns = ["name", "parent", "status", "job", "dependencies", "arguments", "qualifier" ];
 export const getRowClass = (trigger, col) => {
     let rclass = ""
     if ("status" === col ) {
@@ -37,8 +37,8 @@ export const mapDispatchToProps = (dispatch, ownProps) => {
         getRowClass: getRowClass,
         determineRowClass: getRowClass,
         actionButton: () => {dispatch(fetchTriggers('/api/trigger/list'))},
-        runButton: (name) => {dispatch(runTriggers('/api/trigger/run?triggerName=' + name ))},
-        retrieveLogs: (name) => {dispatch(fetchLogs('/api/job/logs/' + name ))}
+        runButton: (name) => {dispatch(runTriggers('/api/trigger/execute?triggerName=' + name ))},
+        retrieveLogs: (name) => {dispatch(fetchLogs('/api/trigger/logs?pattern=' + name ))}
     }
 }
 
